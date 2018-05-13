@@ -18,9 +18,9 @@ library
                      , ambiata-x-eithert
                      , ambiata-x-templatehaskell
                      , containers
-                     , filepath                        == 1.4.*
+                     , filepath                        == 1.*
                      , semigroups                      == 0.18.*
-                     , template-haskell                >= 2.10       && < 2.12
+                     , template-haskell                >= 2.10       && < 2.14
                      , text                            == 1.2.*
                      , transformers                    >= 0.4        && < 0.7
 
@@ -50,7 +50,7 @@ test-suite test
                        base                            >= 3          && < 5
                      , ambiata-disorder-core
                      , ambiata-disorder-corpus
-                     , ambiata-disorder-jack  
+                     , ambiata-disorder-jack
                      , ambiata-p
                      , ambiata-machinator-core
                      , ambiata-machinator-haskell
@@ -73,7 +73,7 @@ test-suite test-io
                        base                            >= 3          && < 5
                      , ambiata-disorder-core
                      , ambiata-disorder-corpus
-                     , ambiata-disorder-jack  
+                     , ambiata-disorder-jack
                      , ambiata-p
                      , ambiata-machinator-core
                      , ambiata-machinator-core-test
