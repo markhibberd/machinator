@@ -66,6 +66,8 @@ data Type
   = Variable Name
   | GroundT Ground
   | ListT Type
+  | MaybeT Type
+  | EitherT Type Type
   deriving (Eq, Ord, Show, Data, Typeable, Generic)
 
 -- | Ground types, e.g. platform primitives.
@@ -107,11 +109,11 @@ free d =
   case d of
     Variant nts ->
       fold . with nts $ \(_, ts) ->
-        S.fromList . catMaybes . with ts $ freeInType
+        S.fromList . join . with ts $ freeInType
     Record fts ->
-      S.fromList . catMaybes . with fts $ \(_, t) -> (freeInType t)
+      S.fromList . join . with fts $ \(_, t) -> (freeInType t)
 
-freeInType :: Type -> Maybe Name
+freeInType :: Type -> [Name]
 freeInType t =
   case t of
     Variable n ->
@@ -120,3 +122,7 @@ freeInType t =
       empty
     ListT lt ->
       freeInType lt
+    MaybeT a ->
+      freeInType a
+    EitherT a b ->
+      freeInType a <> freeInType b

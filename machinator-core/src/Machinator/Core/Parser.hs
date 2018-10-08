@@ -156,6 +156,10 @@ types' v = do
   case x of
     Name "List" ->
       hasFeature v HasLists *> (ListT <$> types v)
+    Name "Maybe" ->
+      hasFeature v HasMaybe *> (MaybeT <$> types v)
+    Name "Either" ->
+      hasFeature v HasEither *> (EitherT <$> types v <*> types v)
     _ ->
       case groundFromName x of
         Just t ->
